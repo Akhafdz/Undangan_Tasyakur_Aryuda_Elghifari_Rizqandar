@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tasyakur Aqiqah & Khitan | Aryuda Elghifari Rizqandar</title>
+  <meta name="description" content="Undangan Tasyakur Aqiqah dan Khitan Aryuda Elghifari Rizqandar">
+
+  <!-- Google Fonts: ramah anak, bulat dan lembut -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+  :root{
+    --text:#1b2a24;          /* hijau tua untuk teks utama */
+    --muted:#4a5e54;         /* hijau abu untuk teks sekunder */
+    --accent:#2f4f3a;        /* hijau army */
+    --accent-soft:#c8d5c2;   /* hijau army muda */
+    --glass:rgba(255,255,255,.9);
+    --shadow:0 10px 30px rgba(0,0,0,.15);
+    --radius:22px;
+  }
+
+  /* reset */
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+
+  /* background hijau army putih animasi */
+  body{
+    font-family:'Quicksand', system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text);
+    background:linear-gradient(
+      120deg,
+      #f9fbf8,
+      #e3ece0,
+      #d2e0d0,
+      #f9fbf8,
+      #e3ece0
+    );
+    background-size:400% 400%;
+    animation:bgMove 20s ease-in-out infinite;
+  }
+
+  /* overlay lembut supaya konten tetap jelas */
+  .overlay{
+    position:fixed;inset:0;
+    pointer-events:none;
+    background:
+      url("https://images.unsplash.com/photo-1502500077790-48b753c2118d?auto=format&fit=crop&w=1200&q=80")
+      center top / cover no-repeat;
+    opacity:.14;
+  }
+
+  .shell{
+    position:relative;
+    max-width:900px;
+    margin:auto;
+    padding:24px 16px 90px;
+    z-index:1;
+  }
+
+  /* section */
+  .section{display:none}
+  .section.active{display:block}
+
+  /* heading dan hero */
+  .top-title{
+    text-align:center;
+    font-family:'Fredoka', system-ui, sans-serif;
+    font-size:28px;
+    margin-bottom:18px;
+    color:var(--accent);
+  }
+
+  .hero{
+    background:var(--glass);
+    border-radius:var(--radius);
+    padding:22px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    border:2px solid var(--accent-soft);
+  }
+
+  .avatar{
+    width:150px;height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid var(--accent-soft);
+    margin-bottom:14px;
+  }
+
+  .name{
+    font-family:'Fredoka', system-ui, sans-serif;
+    font-size:30px;
+    font-weight:700;
+    color:var(--accent);
+  }
+
+  .date{
+    color:var(--accent);
+    font-weight:700;
+    margin-top:4px;
+  }
+
+  /* strip foto tambahan */
+  .photo-strip{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+  }
+
+  .photo-strip img{
+    width:95px;
+    height:95px;
+    border-radius:20px;
+    object-fit:cover;
+    border:3px solid var(--accent-soft);
+  }
+
+  /* tombol */
+  .btn{
+    margin-top:14px;
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:999px;
+    border:none;
+    background:linear-gradient(135deg,#2f4f3a,#4f7b5a);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.2);
+  }
+  .btn:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.05);
+  }
+
+  /* section title dan card */
+  .section-title{
+    text-align:center;
+    margin:16px 0 12px;
+    font-family:'Fredoka', system-ui, sans-serif;
+    color:var(--accent);
+  }
+
+  .card{
+    background:var(--glass);
+    border-radius:var(--radius);
+    padding:16px;
+    box-shadow:var(--shadow);
+    margin-bottom:14px;
+    border:2px solid var(--accent-soft);
+  }
+  .card p{
+    line-height:1.6;
+    color:var(--muted);
+    font-size:15px;
+  }
+
+  /* kartu musik */
+  .music-card{
+    text-align:center;
+  }
+  .music-note{
+    font-size:22px;
+    margin-bottom:6px;
+  }
+  .music-hint{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+
+  /* countdown */
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:10px;
+    flex-wrap:wrap;
+  }
+  .cd{
+    background:#e0ecdd;
+    padding:10px;
+    border-radius:18px;
+    min-width:70px;
+    text-align:center;
+    border:1px solid var(--accent-soft);
+  }
+  .cd span{
+    display:block;
+    font-size:22px;
+    font-weight:900;
+    color:var(--accent);
+  }
+
+  /* form ucapan & input umum */
+  form input,
+  form textarea,
+  form select{
+    width:100%;
+    padding:10px;
+    margin-bottom:8px;
+    border-radius:12px;
+    border:1px solid var(--accent-soft);
+    background:#fff;
+    color:var(--text);
+    font-family:'Quicksand', system-ui, sans-serif;
+  }
+  form textarea{resize:vertical}
+
+  /* bottom nav */
+  .bottom-nav{
+    position:fixed;left:0;right:0;bottom:0;
+    display:flex;
+    justify-content:space-around;
+    background:#ffffffee;
+    padding:8px 6px;
+    box-shadow:0 -4px 16px rgba(0,0,0,.12);
+    z-index:2;
+  }
+  .bottom-nav button{
+    background:none;
+    border:none;
+    color:#7b8ba0;
+    font-weight:700;
+    cursor:pointer;
+    font-family:'Fredoka', system-ui, sans-serif;
+    font-size:13px;
+  }
+  .bottom-nav button.active{
+    color:var(--accent);
+  }
+
+  /* dekorasi bergerak pelan: balon & awan */
+  .floating{
+    position:fixed;
+    pointer-events:none;
+    z-index:0; /* di belakang konten utama */
+  }
+
+  /* BALON */
+  .balloon{
+    width:60px;
+    height:80px;
+    border-radius:60px 60px 40px 40px;
+    background:radial-gradient(circle at 30% 20%, #ffffff 0, #5f7f61 40%, #2f4f3a 100%);
+    box-shadow:0 10px 18px rgba(0,0,0,.2);
+  }
+  .balloon::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-18px;
+    width:2px;
+    height:22px;
+    background:#8fa78f;
+    transform:translateX(-50%);
+  }
+  .balloon-1{
+    left:8%;
+    bottom:-100px;
+    animation:floatUp 26s linear infinite;
+  }
+  .balloon-2{
+    left:70%;
+    bottom:-120px;
+    animation:floatUp 30s linear infinite;
+    filter:hue-rotate(10deg);
+  }
+  .balloon-3{
+    left:40%;
+    bottom:-110px;
+    animation:floatUp 24s linear infinite;
+    filter:hue-rotate(-10deg);
+  }
+
+  /* AWAN */
+  .cloud{
+    background:#ffffffdd;
+    border-radius:50px;
+    box-shadow:0 6px 12px rgba(0,0,0,.08);
+  }
+  .cloud::before,
+  .cloud::after{
+    content:"";
+    position:absolute;
+    background:#ffffffee;
+    border-radius:50%;
+  }
+  .cloud-1{
+    width:120px;
+    height:40px;
+    top:15%;
+    right:-160px;
+    animation:cloudMove 40s linear infinite;
+  }
+  .cloud-1::before{
+    width:60px;height:60px;
+    top:-25px;left:10px;
+  }
+  .cloud-1::after{
+    width:50px;height:50px;
+    top:-20px;right:10px;
+  }
+  .cloud-2{
+    width:150px;
+    height:48px;
+    top:55%;
+    left:-190px;
+    animation:cloudMoveReverse 45s linear infinite;
+  }
+  .cloud-2::before{
+    width:70px;height:70px;
+    top:-30px;left:24px;
+  }
+  .cloud-2::after{
+    width:55px;height:55px;
+    top:-22px;right:15px;
+  }
+
+  /* animasi gerak */
+  @keyframes floatUp{
+    0%{
+      transform:translateY(0);
+      opacity:0;
+    }
+    10%{
+      opacity:1;
+    }
+    100%{
+      transform:translateY(-120vh);
+      opacity:0;
+    }
+  }
+  @keyframes cloudMove{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-130vw);}
+  }
+  @keyframes cloudMoveReverse{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(130vw);}
+  }
+
+  @keyframes bgMove{
+    0%{
+      background-position:0% 50%;
+    }
+    50%{
+      background-position:100% 50%;
+    }
+    100%{
+      background-position:0% 50%;
+    }
+  }
+  </style>
+</head>
+
+<body>
+
+  <!-- Dekorasi balon & awan -->
+  <div class="floating balloon balloon-1"></div>
+  <div class="floating balloon balloon-2"></div>
+  <div class="floating balloon balloon-3"></div>
+
+  <div class="floating cloud cloud-1"></div>
+  <div class="floating cloud cloud-2"></div>
+
+  <div class="overlay"></div>
+
+  <main class="shell">
+
+    <!-- HOME -->
+    <section id="home" class="section active">
+      <h1 class="top-title">Undangan Tasyakur</h1>
+      <div class="hero">
+        <!-- FOTO UTAMA -->
+        <img src="001.png" class="avatar" alt="Foto Aryuda Elghifari Rizqandar">
+
+        <div class="name">Aryuda Elghifari Rizqandar</div>
+        <div class="date">Sabtu, 27 Desember 2025</div>
+        <a id="gcal" class="btn" target="_blank" rel="noopener noreferrer">Simpan ke Google Calendar</a>
+
+        <!-- FOTO TAMBAHAN -->
+        <div class="photo-strip">
+          <img src="002.jpeg" alt="Foto anak 1">
+          <img src="003.jpeg" alt="Foto anak 2">
+          <img src="004.jpeg" alt="Foto anak 3">
+        </div>
+      </div>
+
+      <!-- KARTU MUSIK -->
+      <div class="card music-card">
+        <div class="music-note">🎵</div>
+        <p>Putar lantunan musik lembut saat membuka undangan ini.</p>
+        <button class="btn" type="button" id="music-toggle">Putar Musik</button>
+        <p class="music-hint">
+          Simpan file musik sebagai <strong>musik.mp3</strong> di folder yang sama dengan file ini.
+        </p>
+      </div>
+
+      <!-- AUDIO PLAYER (TIDAK TERLIHAT) -->
+      <audio id="bg-music" src="musik.mp3" preload="auto" loop></audio>
+    </section>
+
+    <!-- TENTANG -->
+    <section id="tentang" class="section">
+      <h2 class="section-title">Tasyakur Aqiqah &amp; Khitan</h2>
+      <div class="card">
+        <p>
+          Assalamu’alaikum Warahmatullahi Wabarakatuh<br><br>
+          Dengan memohon rahmat dan ridho Allah SWT, kami mengundang
+          Bapak/Ibu/Saudara/i untuk berkenan hadir dalam acara
+          <strong>Tasyakur Aqiqah dan Khitan</strong> putra kami:
+        </p>
+        <p style="text-align:center;font-weight:800;color:#1b2a24">
+          ARYUDA ELGHIFARI RIZQANDAR<br>
+          Putra dari SERTU I. Iskandar &amp; Ibu Rika Mustika
+        </p>
+      </div>
+    </section>
+
+    <!-- TANGGAL -->
+    <section id="tanggal" class="section">
+      <h2 class="section-title">Waktu &amp; Tempat</h2>
+      <div class="card">
+        <p>
+          🗓 Sabtu, 27 Desember 2025<br>
+          🕘 Pukul 09.00 WIB – selesai<br>
+          📍 Kediaman SERTU I. Iskandar
+        </p>
+
+        <!-- TOMBOL GOOGLE MAPS -->
+        <a
+          href="https://www.google.com/maps?q=Kediaman+SERTU+I+Iskandar"
+          class="btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Lihat Lokasi di Google Maps
+        </a>
+      </div>
+
+      <div class="card">
+        <h3 style="text-align:center;font-family:'Fredoka',system-ui,sans-serif;color:var(--accent)">
+          Hitung Mundur
+        </h3>
+        <div class="countdown">
+          <div class="cd"><span id="d">0</span>Hari</div>
+          <div class="cd"><span id="h">0</span>Jam</div>
+          <div class="cd"><span id="m">0</span>Menit</div>
+          <div class="cd"><span id="s">0</span>Detik</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="section">
+      <h2 class="section-title">Konfirmasi Kehadiran</h2>
+
+      <div class="card">
+        <form id="form-rsvp">
+          <input id="nama-rsvp" placeholder="Nama" required>
+          <input id="jumlah-rsvp" type="number" min="1" placeholder="Jumlah yang hadir" required>
+          <select id="status-rsvp" required>
+            <option value="">Pilih status kehadiran</option>
+            <option value="Hadir">Hadir</option>
+            <option value="InsyaAllah hadir">InsyaAllah hadir</option>
+            <option value="Belum bisa hadir">Belum bisa hadir</option>
+          </select>
+          <textarea id="catatan-rsvp" rows="3" placeholder="Catatan (opsional)"></textarea>
+          <button class="btn" type="submit">Kirim Konfirmasi</button>
+        </form>
+      </div>
+
+      <div class="card" id="list-rsvp">
+        <!-- daftar konfirmasi akan muncul di sini -->
+      </div>
+
+      <div class="card">
+        <p style="margin-top:0">
+          Kirim rekap konfirmasi ke WhatsApp (Panitia / Orang tua):
+        </p>
+        <input id="wa-number" placeholder="Nomor WhatsApp (misal: 62812xxxxxxx)">
+        <button class="btn" type="button" id="wa-send">Kirim Rekap via WhatsApp</button>
+      </div>
+    </section>
+
+    <!-- UCAPAN -->
+    <section id="ucapan" class="section">
+      <h2 class="section-title">Ucapan &amp; Doa</h2>
+      <div class="card">
+        <form id="form">
+          <input id="nama" placeholder="Nama" required>
+          <textarea id="pesan" rows="3" placeholder="Ucapan &amp; doa" required></textarea>
+          <button class="btn" type="submit">Kirim</button>
+        </form>
+      </div>
+      <div class="card" id="list"></div>
+    </section>
+
+  </main>
+
+  <!-- NAVIGATION BAWAH -->
+  <nav class="bottom-nav">
+    <button class="active" data-go="home">Home</button>
+    <button data-go="tentang">Tentang</button>
+    <button data-go="tanggal">Tanggal</button>
+    <button data-go="rsvp">Konfirmasi</button>
+    <button data-go="ucapan">Ucapan</button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
