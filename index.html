@@ -1,17 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tasyakur Aqiqah & Khitan | Aryuda Elghifari Rizqandar</title>
-  <meta name="description" content="Undangan Tasyakur Aqiqah dan Khitan Aryuda Elghifari Rizqandar">
-
-  <!-- Google Fonts: ramah anak, bulat dan lembut -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Tasyakur Aqiqah &amp; Khitan | Aryuda Elghifari Rizqandar</title>
+<meta content="Undangan Tasyakur Aqiqah dan Khitan Aryuda Elghifari Rizqandar" name="description"/>
+<!-- Google Fonts: ramah anak, bulat dan lembut -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&amp;family=Quicksand:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
   :root{
     --text:#1b2a24;          /* hijau tua untuk teks utama */
     --muted:#4a5e54;         /* hijau abu untuk teks sekunder */
@@ -161,7 +160,18 @@
     font-size:15px;
   }
 
-  /* kartu musik */
+  /* Tentang: highlight nama agar konsisten dengan tema font */
+  .about-highlight{
+    text-align:center;
+    font-family:'Fredoka', system-ui, sans-serif;
+    font-weight:800;
+    font-size:18px;
+    color:var(--accent);
+    margin:10px 0 0;
+  }
+
+
+/* kartu musik */
   .music-card{
     text-align:center;
   }
@@ -357,163 +367,140 @@
       background-position:0% 50%;
     }
   }
-  </style>
+  
+
+.form-status{margin:10px 0 0;font-size:14px;opacity:.9}
+.form-status.ok{color:#2f6f3a}
+.form-status.err{color:#8a1f1f}
+</style>
 </head>
-
 <body>
-
-  <!-- Dekorasi balon & awan -->
-  <div class="floating balloon balloon-1"></div>
-  <div class="floating balloon balloon-2"></div>
-  <div class="floating balloon balloon-3"></div>
-
-  <div class="floating cloud cloud-1"></div>
-  <div class="floating cloud cloud-2"></div>
-
-  <div class="overlay"></div>
-
-  <main class="shell">
-
-    <!-- HOME -->
-    <section id="home" class="section active">
-      <h1 class="top-title">Undangan Tasyakur</h1>
-      <div class="hero">
-        <!-- FOTO UTAMA -->
-        <img src="001.png" class="avatar" alt="Foto Aryuda Elghifari Rizqandar">
-
-        <div class="name">Aryuda Elghifari Rizqandar</div>
-        <div class="date">Sabtu, 27 Desember 2025</div>
-        <a id="gcal" class="btn" target="_blank" rel="noopener noreferrer">Simpan ke Google Calendar</a>
-
-        <!-- FOTO TAMBAHAN -->
-        <div class="photo-strip">
-          <img src="002.jpeg" alt="Foto anak 1">
-          <img src="003.jpeg" alt="Foto anak 2">
-          <img src="004.jpeg" alt="Foto anak 3">
+<!-- Dekorasi balon & awan -->
+<div class="floating balloon balloon-1"></div>
+<div class="floating balloon balloon-2"></div>
+<div class="floating balloon balloon-3"></div>
+<div class="floating cloud cloud-1"></div>
+<div class="floating cloud cloud-2"></div>
+<div class="overlay"></div>
+<main class="shell">
+<!-- HOME -->
+<section class="section active" id="home">
+<h1 class="top-title">Undangan Tasyakur Khitan</h1>
+<div class="hero">
+<!-- FOTO UTAMA -->
+<img alt="Foto Aryuda Elghifari Rizqandar" class="avatar" src="001.png"/>
+<div class="name">Aryuda Elghifari Rizqandar</div>
+<div class="date">
+          Sabtu, 27 Desember 2025 (19.00–22.00 WIB)<br/>
+          Minggu, 28 Desember 2025 (09.00 WIB – selesai)
         </div>
-      </div>
-
-      <!-- KARTU MUSIK -->
-      <div class="card music-card">
-        <div class="music-note">🎵</div>
-        <p>Putar lantunan musik lembut saat membuka undangan ini.</p>
-        <button class="btn" type="button" id="music-toggle">Putar Musik</button>
-        <p class="music-hint">
-          Simpan file musik sebagai <strong>musik.mp3</strong> di folder yang sama dengan file ini.
+<a class="btn" id="gcal" rel="noopener noreferrer" target="_blank">Simpan ke Google Calendar</a>
+<!-- FOTO TAMBAHAN -->
+<div class="photo-strip">
+<img alt="Foto anak 1" src="002.jpeg"/>
+<img alt="Foto anak 2" src="003.jpeg"/>
+<img alt="Foto anak 3" src="004.jpeg"/>
+</div>
+</div>
+<!-- KARTU MUSIK -->
+<div class="card music-card">
+<div class="music-note">🎵</div>
+<p>Putar lantunan musik lembut saat membuka undangan ini.</p>
+<button class="btn" id="music-toggle" type="button">Play</button>
+<p class="music-hint">
+          <strong>musik.mp3</strong> 
         </p>
-      </div>
-
-      <!-- AUDIO PLAYER (TIDAK TERLIHAT) -->
-      <audio id="bg-music" src="musik.mp3" preload="auto" loop></audio>
-    </section>
-
-    <!-- TENTANG -->
-    <section id="tentang" class="section">
-      <h2 class="section-title">Tasyakur Aqiqah &amp; Khitan</h2>
-      <div class="card">
-        <p>
-          Assalamu’alaikum Warahmatullahi Wabarakatuh<br><br>
+</div>
+<!-- AUDIO PLAYER (TIDAK TERLIHAT) -->
+<audio id="bg-music" loop="" preload="auto" src="musik.mp3"></audio>
+</section>
+<!-- TENTANG -->
+<section class="section" id="tentang">
+<h2 class="section-title">Tasyakur Aqiqah &amp; Khitan</h2>
+<div class="card">
+<p>
+          Assalamu’alaikum Warahmatullahi Wabarakatuh<br/><br/>
           Dengan memohon rahmat dan ridho Allah SWT, kami mengundang
           Bapak/Ibu/Saudara/i untuk berkenan hadir dalam acara
           <strong>Tasyakur Aqiqah dan Khitan</strong> putra kami:
         </p>
-        <p style="text-align:center;font-weight:800;color:#1b2a24">
-          ARYUDA ELGHIFARI RIZQANDAR<br>
+<p class="about-highlight">
+          ARYUDA ELGHIFARI RIZQANDAR<br/>
           Putra dari SERTU I. Iskandar &amp; Ibu Rika Mustika
         </p>
-      </div>
-    </section>
-
-    <!-- TANGGAL -->
-    <section id="tanggal" class="section">
-      <h2 class="section-title">Waktu &amp; Tempat</h2>
-      <div class="card">
-        <p>
-          🗓 Sabtu, 27 Desember 2025<br>
-          🕘 Pukul 09.00 WIB – selesai<br>
+</div>
+</section>
+<!-- TANGGAL -->
+<section class="section" id="tanggal">
+<h2 class="section-title">Waktu &amp; Tempat</h2>
+<div class="card">
+<p>
+          🗓 Sabtu, 27 Desember 2025<br/>
+          🕖 Pukul 19.00 WIB – 22.00 WIB<br/>
+          🗓 Minggu, 28 Desember 2025<br/>
+          🕘 Pukul 09.00 WIB – selesai<br/>
           📍 Kediaman SERTU I. Iskandar
         </p>
-
-        <!-- TOMBOL GOOGLE MAPS -->
-        <a
-          href="https://www.google.com/maps?q=Kediaman+SERTU+I+Iskandar"
-          class="btn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+<!-- TOMBOL GOOGLE MAPS -->
+<a class="btn" href="https://maps.app.goo.gl/YXkaabQfPWUxDAaL8" rel="noopener noreferrer" target="_blank">
           Lihat Lokasi di Google Maps
         </a>
-      </div>
-
-      <div class="card">
-        <h3 style="text-align:center;font-family:'Fredoka',system-ui,sans-serif;color:var(--accent)">
+</div>
+<div class="card">
+<h3 style="text-align:center;font-family:'Fredoka',system-ui,sans-serif;color:var(--accent)">
           Hitung Mundur
         </h3>
-        <div class="countdown">
-          <div class="cd"><span id="d">0</span>Hari</div>
-          <div class="cd"><span id="h">0</span>Jam</div>
-          <div class="cd"><span id="m">0</span>Menit</div>
-          <div class="cd"><span id="s">0</span>Detik</div>
-        </div>
-      </div>
-    </section>
+<div class="countdown">
+<div class="cd"><span id="d">0</span>Hari</div>
+<div class="cd"><span id="h">0</span>Jam</div>
+<div class="cd"><span id="m">0</span>Menit</div>
+<div class="cd"><span id="s">0</span>Detik</div>
+</div>
+</div>
+</section>
+<!-- RSVP -->
+<section class="section" id="rsvp">
+<h2 class="section-title">Konfirmasi Kehadiran</h2>
+<div class="card">
+<form accept-charset="UTF-8" action="https://formspree.io/f/mykgeydv" id="form-rsvp" method="POST">
+<input id="nama-rsvp" name="nama" placeholder="Nama" required=""/>
+<input id="jumlah-rsvp" min="1" name="jumlah_hadir" placeholder="Jumlah yang hadir" required="" type="number"/>
+<select id="status-rsvp" name="status_kehadiran" required="">
+<option value="">Pilih status kehadiran</option>
+<option value="Hadir">Hadir</option>
+<option value="InsyaAllah hadir">InsyaAllah hadir</option>
+<option value="Belum bisa hadir">Belum bisa hadir</option>
+</select>
+<textarea id="catatan-rsvp" name="catatan" placeholder="Catatan (opsional)" rows="3"></textarea>
+<input name="event_title" type="hidden" value="Tasyakur Aqiqah &amp; Khitan Aryuda Elghifari Rizqandar"/><input name="event_date_1" type="hidden" value="27 Desember 2025 19.00-22.00 WIB"/><input name="event_date_2" type="hidden" value="28 Desember 2025 09.00 WIB - selesai"/><input name="maps_url" type="hidden" value="https://maps.app.goo.gl/YXkaabQfPWUxDAaL8"/><input name="_subject" type="hidden" value="RSVP Konfirmasi Kehadiran"/><button class="btn" type="submit">Kirim Konfirmasi</button><p class="form-status" id="rsvp-status"></p>
+</form>
+</div>
+<div class="card" id="list-rsvp">
+<!-- daftar konfirmasi akan muncul di sini -->
+</div>
 
-    <!-- RSVP -->
-    <section id="rsvp" class="section">
-      <h2 class="section-title">Konfirmasi Kehadiran</h2>
-
-      <div class="card">
-        <form id="form-rsvp">
-          <input id="nama-rsvp" placeholder="Nama" required>
-          <input id="jumlah-rsvp" type="number" min="1" placeholder="Jumlah yang hadir" required>
-          <select id="status-rsvp" required>
-            <option value="">Pilih status kehadiran</option>
-            <option value="Hadir">Hadir</option>
-            <option value="InsyaAllah hadir">InsyaAllah hadir</option>
-            <option value="Belum bisa hadir">Belum bisa hadir</option>
-          </select>
-          <textarea id="catatan-rsvp" rows="3" placeholder="Catatan (opsional)"></textarea>
-          <button class="btn" type="submit">Kirim Konfirmasi</button>
-        </form>
-      </div>
-
-      <div class="card" id="list-rsvp">
-        <!-- daftar konfirmasi akan muncul di sini -->
-      </div>
-
-      <div class="card">
-        <p style="margin-top:0">
-          Kirim rekap konfirmasi ke WhatsApp (Panitia / Orang tua):
-        </p>
-        <input id="wa-number" placeholder="Nomor WhatsApp (misal: 62812xxxxxxx)">
-        <button class="btn" type="button" id="wa-send">Kirim Rekap via WhatsApp</button>
-      </div>
-    </section>
-
-    <!-- UCAPAN -->
-    <section id="ucapan" class="section">
-      <h2 class="section-title">Ucapan &amp; Doa</h2>
-      <div class="card">
-        <form id="form">
-          <input id="nama" placeholder="Nama" required>
-          <textarea id="pesan" rows="3" placeholder="Ucapan &amp; doa" required></textarea>
-          <button class="btn" type="submit">Kirim</button>
-        </form>
-      </div>
-      <div class="card" id="list"></div>
-    </section>
-
-  </main>
-
-  <!-- NAVIGATION BAWAH -->
-  <nav class="bottom-nav">
-    <button class="active" data-go="home">Home</button>
-    <button data-go="tentang">Tentang</button>
-    <button data-go="tanggal">Tanggal</button>
-    <button data-go="rsvp">Konfirmasi</button>
-    <button data-go="ucapan">Ucapan</button>
-  </nav>
-
-  <script src="app.js"></script>
+</section>
+<!-- UCAPAN -->
+<section class="section" id="ucapan">
+<h2 class="section-title">Ucapan &amp; Doa</h2>
+<div class="card">
+<form id="form">
+<input id="nama" placeholder="Nama" required=""/>
+<textarea id="pesan" placeholder="Ucapan &amp; doa" required="" rows="3"></textarea>
+<button class="btn" type="submit">Kirim</button>
+</form>
+</div>
+<div class="card" id="list"></div>
+</section>
+</main>
+<!-- NAVIGATION BAWAH -->
+<nav class="bottom-nav">
+<button class="active" data-go="home">Home</button>
+<button data-go="tentang">Tentang</button>
+<button data-go="tanggal">Tanggal</button>
+<button data-go="rsvp">Konfirmasi</button>
+<button data-go="ucapan">Ucapan</button>
+</nav>
+<script src="app.js"></script>
 </body>
 </html>

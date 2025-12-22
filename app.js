@@ -1,13 +1,20 @@
 // Konfigurasi acara
 const EVENT = {
   title: "Tasyakur Aqiqah & Khitan Aryuda Elghifari Rizqandar",
-  details: "Acara Tasyakur Aqiqah dan Khitan",
+  details:
+    "Acara Tasyakur Aqiqah dan Khitan\n\n" +
+    "Jadwal:\n" +
+    "• Sabtu, 27 Desember 2025 (19.00–22.00 WIB)\n" +
+    "• Minggu, 28 Desember 2025 (09.00 WIB – selesai)\n\n" +
+    "Google Maps: https://maps.app.goo.gl/YXkaabQfPWUxDAaL8",
   location: "Kediaman SERTU I. Iskandar",
-  startUtc: "20251227T020000Z", // 09.00 WIB
-  endUtc: "20251227T070000Z"    // 14.00 WIB (misal)
+  startUtc: "20251227T120000Z", // 19.00 WIB
+  endUtc: "20251227T150000Z"    // 22.00 WIB
 };
 
-// Parse string waktu format 20251227T020000Z jadi Date
+
+
+// Parse string waktu format iCal (mis: 20251227T120000Z) jadi Date
 function parseIcalDate(dateStr) {
   const year = Number(dateStr.slice(0, 4));
   const month = Number(dateStr.slice(4, 6)) - 1;
@@ -185,9 +192,6 @@ function initRsvp() {
   const statusSelect = document.getElementById("status-rsvp");
   const catatanInput = document.getElementById("catatan-rsvp");
 
-  const waNumberInput = document.getElementById("wa-number");
-  const waSendBtn = document.getElementById("wa-send");
-
   if (!form || !list || !namaInput || !jumlahInput || !statusSelect || !catatanInput) return;
 
   function getRsvpData() {
@@ -222,8 +226,21 @@ function initRsvp() {
     });
   }
 
-  form.onsubmit = (e) => {
+  const statusEl = document.getElementById("rsvp-status");
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  function setStatus(message, type) {
+    if (!statusEl) return;
+    statusEl.textContent = message || "";
+    statusEl.classList.remove("ok", "err");
+    if (type === "ok") statusEl.classList.add("ok");
+    if (type === "err") statusEl.classList.add("err");
+  }
+
+  form.onsubmit = async (e) => {
     e.preventDefault();
+    setStatus("");
+
     const nama = namaInput.value.trim();
     const jumlah = Number(jumlahInput.value);
     const status = statusSelect.value;
@@ -231,46 +248,65 @@ function initRsvp() {
 
     if (!nama || !jumlah || !status) return;
 
+    // Simpan lokal agar tetap bisa ditampilkan di halaman
     const data = getRsvpData();
     data.push({ n: nama, j: jumlah, s: status, c: catatan });
     localStorage.rsvp = JSON.stringify(data);
 
-    form.reset();
     renderRsvpList();
-  };
 
-  // EXPORT KE WHATSAPP
-  if (waSendBtn && waNumberInput) {
-    waSendBtn.onclick = () => {
-      const numberRaw = waNumberInput.value.trim();
-      const number = numberRaw.replace(/\D/g, "");
+    const endpoint = (form.getAttribute("action") || "").trim();
 
-      if (!number) {
-        alert("Isi nomor WhatsApp tujuan dulu, ya. Contoh: 62812xxxxxxx");
-        return;
-      }
+    const endpointConfigured = !!endpoint && endpoint !== "#";
 
-      const data = getRsvpData();
-      if (!data.length) {
-        alert("Belum ada data konfirmasi yang bisa dikirim.");
-        return;
-      }
+    // Kirim ke Formspree (jika endpoint sudah di-set)
+    if (!endpointConfigured) {
+      form.reset();
+      setStatus(
+        "Konfirmasi tersimpan di perangkat ini. Endpoint Formspree belum diatur di atribut action pada form RSVP.",
+        "err"
+      );
+      return;
+    }
 
-      let text = "Assalamu'alaikum,\nBerikut rekap konfirmasi kehadiran acara:\n\n";
-      data.forEach((item, idx) => {
-        text += `${idx + 1}. ${item.n} - ${item.s}, ${item.j} orang`;
-        if (item.c) {
-          text += ` (${item.c})`;
-        }
-        text += "\n";
+    const originalBtnText = submitBtn ? submitBtn.textContent : "";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Mengirim...";
+    }
+
+    try {
+      const formData = new FormData(form);
+      formData.set("submitted_at", new Date().toISOString());
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
       });
 
-      text += "\nDikirim dari undangan online Aryuda Elghifari Rizqandar.";
-
-      const url = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank");
-    };
-  }
+      if (res.ok) {
+        form.reset();
+        setStatus("Konfirmasi berhasil terkirim. Terima kasih.", "ok");
+      } else {
+        form.reset();
+        setStatus(
+          "Konfirmasi tersimpan di perangkat ini, tetapi pengiriman ke Formspree gagal. Silakan coba lagi.",
+          "err"
+        );
+      }
+    } catch (err) {
+      form.reset();
+      setStatus(
+        "Konfirmasi tersimpan di perangkat ini, tetapi koneksi ke Formspree gagal. Silakan coba lagi.",
+        "err"
+      );
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText || "Kirim Konfirmasi";
+      }
+    }
+  };
 
   renderRsvpList();
 }
