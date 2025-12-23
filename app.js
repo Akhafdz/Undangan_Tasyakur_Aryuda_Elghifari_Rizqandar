@@ -150,7 +150,7 @@ function initUcapan() {
     const data = getUcapanData();
 
     if (!data.length) {
-      list.innerHTML = "<p>Belum ada ucapan. Jadilah yang pertama mengirim doa 🤍</p>";
+      list.innerHTML = "<p></p>";
       return;
     }
 
@@ -203,7 +203,7 @@ function initRsvp() {
     const data = getRsvpData();
 
     if (!data.length) {
-      list.innerHTML = "<p>Belum ada konfirmasi kehadiran.</p>";
+      list.innerHTML = "<p>konfirmasi kehadiran.</p>";
       return;
     }
 
